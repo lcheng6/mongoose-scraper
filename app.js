@@ -1,6 +1,7 @@
 var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('winston');
+var path = require('path')
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
@@ -20,7 +21,7 @@ app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -29,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_d8kn63vg:p211jce467afesaukdtg9utglc@dbh84.mlab.com:27847/heroku_d8kn63vg");
+mongoose.connect("mongodb://heroku_8p99fqsd:phbvm32j6dhus1ppu88v33f5il@ds127842.mlab.com:27842/heroku_8p99fqsd");
 var db = mongoose.connection;
 
 // Show any mongoose errors
