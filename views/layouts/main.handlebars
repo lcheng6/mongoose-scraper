@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Static Top Navbar Example for Bootstrap</title>
+    <title>NY Times Web Scraper Homework</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -35,11 +35,9 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
-                <li><a href="#about">Saved Articles</a></li>
+                <li><a href="#SavedArticles">Saved Articles</a></li>
                 <li>
-                    <form method="POST" action="/scrape">
-                        <button type="submit" class="btn btn-danger scrape">SCRAPE NEW ARTICLES!</button>
-                    </form>
+                    <a href="#" class="btn btn-danger scrape-button">SCRAPE NEW ARTICLES!</a>
                 </li>
             </ul>
         </div>
@@ -61,7 +59,6 @@
         <div class="col-sm-12">
             <div class="article">
                 <h3 class="text-center yellow">Oh uh. Looks like we don't have any new articles.</h3>
-
             </div>
         </div>
     </div>
@@ -75,6 +72,107 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/javascripts/script.js"></script>
+<script id="scrape-modal-detail-template" type="text/x-handlebars-template">
+    <!--<div class="ui modal modal-detail-card">-->
+    <i class="close icon"></i>
+    <div class="header">
+        \{{title}}
+        <!-- rebound.vegetarian: true -->
+        <i class="icon vegetarian-icon"></i>
+    </div>
+    <div class="ui horizontal segments">
+        <div class="ui segment">
+            <div class="ui tiny statistic">
+                <div class="value">
+                    <!-- rebound.servings: 2 -->
+                    <i class="spoon icon"></i>
+                    \{{servings}}
+                </div>
+                <!-- rebound.preparationMinutes: 30 -->
+                <div class="label">
+                    Servings
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="ui tiny statistic">
+                <div class="value">
+                    <i class="heartbeat icon"></i>
+                    \{{Calories}}
+                </div>
+                <!--   "nutrition": {
+                "nutrients": [{
+                  "title": "Calories",
+                  "amount": 259.03, -->
+                <div class="label">
+                    Calories
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="ui tiny statistic">
+                <div class="value">
+                    <i class="dashboard icon"></i>
+                    \{{preparationMinutes}}
+                </div>
+                <!-- rebound.preparationMinutes: 30 -->
+                <div class="label">
+                    Prep time
+                </div>
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="ui tiny statistic">
+                <div class="value">
+                    <i class="wait icon"></i>
+                    \{{cookingMinutes}}
+                </div>
+                <!-- rebound.cookingMinutes: 15 -->
+                <div class="label">
+                    Cook time
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui horizontal segments">
+        <div class="ui segment">
+            <div class="ui image">
+                <img class="ui fluid image" src="\{{image}}">
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="meta">
+                <span>MISSING INGREDIENTS</span>
+            </div>
+            <div class="ui large list">
+                \{{#each this.missedIngredients}}
+                <div class="item">\{{this.name}}</div>
+                \{{/each}}
+            </div>
+        </div>
+        <div class="ui segment">
+            <div class="meta">
+                <span>USED INGREDIENTS</span>
+            </div>
+            <div class="ui large list">
+                \{{#each this.usedIngredients}}
+                <div class="item">\{{this.name}}</div>
+                \{{/each}}
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="ui black deny button"><i class="inverted share icon"></i>Next Recipe</button>
+        <button class="ui green button add-to-cart-button"><i class="shop icon"></i>Add to Cart</button>
+        <span class="right floated"></span>
+    </div>
+
+    <!--</div>-->
+</script>
+
 {{{body}}}
 </body>
 

@@ -2,6 +2,7 @@
 var express = require('express');
 var request = require("request");
 var cheerio = require("cheerio");
+var Article = require("../models/Article.js")
 
 var router = express.Router();
 
@@ -25,14 +26,20 @@ router.post('/', function (req, res) {
 
             if (art.post !== "") {
                 result.push(art);
+                var newArticle = new Article(art);
+                newArticle.save(function(err, doc) {
+                    if (err) {
+                        console.log("error detected");
+                    }else {
+                        console.log("doc saved" + JSON.stringify(doc));
+                    }
+                })
             }
 
         });
-        res.render('index', {
-            "save": false,
-            "articles": result
-        });
+        resposnse = {articleCount: result.length};
+        res.status(200).json(response);
     });
-})
+});
 
 module.exports = router;
