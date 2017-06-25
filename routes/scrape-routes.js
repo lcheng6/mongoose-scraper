@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 
 var router = express.Router();
 
-router.get('/', function (req, res) {
+router.post('/', function (req, res) {
     request("https://www.nytimes.com", function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);

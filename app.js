@@ -1,7 +1,7 @@
 var express = require('express');
 var favicon = require('serve-favicon');
 var logger = require('winston');
-var path = require('path')
+var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
@@ -13,10 +13,12 @@ var article = require('./routes/article-routes.js');
 
 var app = express();
 
+//app.use(express.static(path.join(__dirname, 'public')));
 // view engine setup
 app.engine("handlebars", expressHbs({
-    defaultLayout: "main"
+    defaultLayout: "index"
 }));
+
 app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
@@ -27,7 +29,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Database configuration with mongoose
 mongoose.connect("mongodb://heroku_8p99fqsd:phbvm32j6dhus1ppu88v33f5il@ds127842.mlab.com:27842/heroku_8p99fqsd");
