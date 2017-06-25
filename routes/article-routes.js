@@ -16,12 +16,11 @@ router.get('/', function (req, res, next) {
     // Or send the doc to the browser as a json object
     else {
       console.log("SAVED ARTICLES", doc);
-      res.render('index', {
-        "save": true,
-        "articles": doc
-      })
     }
-  });
+  }).populate("note")
+    .exec(function (err, doc) {
+      res.status(200).json(doc);
+    });
 });
 
 // GET article by id
@@ -60,54 +59,45 @@ router.post('/', function (req, res, next) {
   });
 });
 
-// Create a new note or replace an existing note
-router.post("/:id", function (req, res) {
+// Create a new note
+router.post("/:id/note", function (req, res) {
 
-  if (req.query.method === "delete") {
-    console.log("REMOVE ID: ", req.param.id);
-    Article.findOneAndRemove({
-      _id: req.params.id
-    }, function (err, offer) {
-      if (err) {
-        console.log(err);
-        throw err;
-      }
-      res.redirect('/article')
-    })
-  } else {
-    // Create a new note and pass the req.body to the entry
-    var newNote = new Note(req.body);
-
-    // And save the new note the db
-    newNote.save(function (error, doc) {
-      // Log any errors
-      if (error) {
-        console.log(error);
-      }
-      // Otherwise
-      else {
-        // Use the article id to find and update it's note
-        Article.findOneAndUpdate({
-          _id: req.params.id
-        }, {
-          $push: {
-            "note": doc._id
-          }
-        }, {
-          new: true
-        }, function (err, newdoc) {
-          // Send any errors to the browser
-          if (err) {
-            res.send(err);
-          }
-          // Or send the newdoc to the browser
-          else {
-            res.redirect('/article')
-          }
-        });
-      }
-    });
-  }
+  var newNote = new Note({body: req.body["Text"]});
+  newNote.save(function (err, doc) {
+    if (err) {
+      console.log(error);
+    }
+    else {
+      // Use the article id to find and update it's note
+      Article.findOneAndUpdate({
+        _id: req.params.id
+      }, {
+        $push: {
+          "note": doc._id
+        }
+      }, {
+        new: true
+      }, function (err, newdoc) {
+        // Send any errors to the browser
+        if (err) {
+          res.send(err);
+        }
+        // Or send the newdoc to the browser
+        else {
+          res.json(newdoc);
+        }
+      });
+    }
+  });
 });
 
+router.delete("/:id/note/:nid", function (req, res) {
+  console.log("id: " + req.params.id);
+  console.log("nid: " + req.params.nid);
+  res.status(202);
+});
+
+router.delete("/:id/note", function (req, res) {
+  console.log("delete all notes");
+});
 module.exports = router;

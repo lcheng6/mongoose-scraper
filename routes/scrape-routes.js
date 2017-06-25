@@ -16,29 +16,20 @@ router.post('/', function (req, res) {
         $(".first-column-region .collection article").each(function (i, element) {
 
             // Save an empty result object
-            var art = {};
+            var article = {};
 
             // Add the text and href of every link, and save them as properties of the result object
-            art.title = $(this).children("h2").text();
-            art.post = $(this).children(".summary").text();
+            article.title = $(this).children("h2").text();
+            article.post = $(this).children(".summary").text();
 
-            console.log("ENTRY NEW :", art);
+            console.log("ENTRY NEW :", article);
 
-            if (art.post !== "") {
-                result.push(art);
-                var newArticle = new Article(art);
-                newArticle.save(function(err, doc) {
-                    if (err) {
-                        console.log("error detected");
-                    }else {
-                        console.log("doc saved" + JSON.stringify(doc));
-                    }
-                })
+            if (article.post !== "") {
+                result.push(article);
             }
 
         });
-        resposnse = {articleCount: result.length};
-        res.status(200).json(response);
+        res.status(200).json(result);
     });
 });
 
