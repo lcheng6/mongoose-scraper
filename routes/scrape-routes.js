@@ -22,6 +22,7 @@ router.get('/', function(req, res) {
       // Add the text and href of every link, and save them as properties of the result object
       article.title = $(this).children("h2").text();
       article.post = $(this).children(".summary").text();
+      article.data = JSON.stringify({"title" :article.title, "post" :article.post});
 
       console.log("ENTRY NEW :", article);
 

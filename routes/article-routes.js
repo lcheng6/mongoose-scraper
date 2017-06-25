@@ -41,7 +41,7 @@ router.get("/:id", function (req, res) {
     });
 });
 
-/* POST save article */
+/* POST to save article */
 router.post('/', function (req, res, next) {
   // Using our Article model, create a new entry
   // This effectively passes the result object to the entry (and the title and link)

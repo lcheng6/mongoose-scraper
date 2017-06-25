@@ -9,27 +9,28 @@ $(".scrape-button").click(function(event) {
         })
 
 });
-// $(".article").on("click", ".save-art", function (event) {
-//     event.stopPropagation();
-//     event.stopImmediatePropagation();
-//
-//     var panel = $(this).closest(".panel");
-//     panel.hide();
-//
-//     $.ajax({
-//             method: "POST",
-//             url: "/article",
-//             data: {
-//                 title: panel.find('#artTitle').text(),
-//                 post: panel.find('#artPost').text()
-//             }
-//         })
-//         // With that done
-//         .done(function (data) {
-//             // Log the response
-//             console.log(data);
-//         });
-// });
+$(".save-article").click(function (event) {
+
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+
+    var panel = $(this).closest(".panel");
+    panel.hide();
+
+    $.ajax({
+            method: "POST",
+            url: "/article",
+            data: {
+                title: panel.find('#artTitle').text(),
+                post: panel.find('#artPost').text()
+            }
+        })
+        // With that done
+        .done(function (data) {
+            // Log the response
+            console.log(data);
+        });
+});
 //
 // $(document).on('click', '.note-modal', function (event) {
 //     event.preventDefault();

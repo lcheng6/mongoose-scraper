@@ -1,24 +1,3 @@
-<script id="article-summary-template" type="text/x-handlebars-template">
-    <div class="container article-block">
-        <div class="row scraped">
-            <div class="col-sm-12">
-                <div class="article">
-                    {{#each articles}}
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 id='artTitle' class="panel-title">{{this.title}}</h3>
-                                <button type="button" class="btn btn-success save-art float-right">save article</button>
-                            </div>
-                            <div id='artPost' class="panel-body"> {{this.post}} </div>
-                        </div>
-                    {{/each}}
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-
 <div class="container article-block">
     <div class="row scraped">
         <div class="col-sm-12">
@@ -27,7 +6,7 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 id='artTitle' class="panel-title">{{this.title}}</h3>
-                            <button type="button" class="btn btn-success save-art float-right">save article</button>
+                            <button type="button" class="btn btn-success save-article float-right" data={{this.data}}>save article</button>
                         </div>
                         <div id='artPost' class="panel-body"> {{this.post}} </div>
                     </div>
