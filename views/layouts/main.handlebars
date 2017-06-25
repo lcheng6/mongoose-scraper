@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Static Top Navbar Example for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+
+</head>
+
+<body>
 <!--Navbar -->
 <nav class="nav-style navbar navbar-default navbar-static-top">
     <div class="container">
@@ -13,11 +34,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a id="home" href="/">Home</a></li>
-                <li><a href="/article">Saved Articles</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#about">Saved Articles</a></li>
                 <li>
                     <form method="POST" action="/scrape">
-                        <button type="submit" class="btn btn-danger scrape">SCRAP NEW ARTICLES!</button>
+                        <button type="submit" class="btn btn-danger scrape">SCRAPE NEW ARTICLES!</button>
                     </form>
                 </li>
             </ul>
@@ -29,19 +50,32 @@
 <div class="row">
     <div class="col-sm-12 color-white">
         <img class="img-responsive title-img" src="./images/print.jpg" alt="title image">
-        <div class="tags">
-            <h1 class="text-center position-rel">Mongo Scraper</h1>
-            <h3 class="text-center position-rel">New York Times Edition</h3>
+        <h1 class="text-center position-rel times-font">Mongoose Scraper</h1>
+        <h3 class="text-center position-rel times-font">New York Times Edition</h3>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="article">
+                <h3 class="text-center yellow">Oh uh. Looks like we don't have any new articles.</h3>
+
+            </div>
         </div>
     </div>
 </div>
 
-{{#if save}}
-    {{>saved-articles}}
-{{else}}
-    {{>scrape}}
-{{/if}}
+<!-- /container -->
 
-<!--New note modal -->
-{{>note}}
 
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{{body}}}
+</body>
+
+</html>

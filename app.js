@@ -5,7 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
-var expressHbs = require('express-handlebars');
+var methodOverride = require("method-override");
+var exphbs = require("express-handlebars");
 
 var index = require('./routes/index-routes');
 var scrape = require('./routes/scrape-routes.js');
@@ -31,7 +32,7 @@ app.use(bodyParser.json({type: "application/vnd.api+json"}));
 // Static directory
 app.use(express.static("public"));
 
-var exphbs = require("express-handlebars");
+
 app.engine("handlebars", exphbs({
     defaultLayout: "main"
 }));
