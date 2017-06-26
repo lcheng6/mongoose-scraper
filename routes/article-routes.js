@@ -7,7 +7,8 @@ var Article = require("../models/Article.js");
 var router = express.Router();
 
 /* GET saved articles */
-router.get('/', function (req, res, next) {
+
+router.get('/articles.json', function (req, res, next) {
   Article.find({}, function (error, doc) {
     // Log any errors
     if (error) {

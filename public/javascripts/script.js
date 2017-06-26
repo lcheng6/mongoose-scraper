@@ -31,6 +31,7 @@ $(".save-article").click(function (event) {
             console.log(data);
         });
 });
+$('#scrapeInfoModal').modal({detachable: false, observeChanges: true}).modal('show');
 //
 // $(document).on('click', '.note-modal', function (event) {
 //     event.preventDefault();

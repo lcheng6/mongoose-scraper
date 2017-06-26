@@ -2,7 +2,7 @@
 var express = require('express');
 var request = require("request");
 var cheerio = require("cheerio");
-var Article = require("../models/Article.js")
+var Article = require("../models/Article.js");
 
 var router = express.Router();
 
@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
       }
 
     });
-    res.status(200).render("scrape", {"articles": result});
+    res.status(200).render("scrape", {"articles": result, "articles_count": result.length.toString()});
   });
 
 });
