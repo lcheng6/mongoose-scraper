@@ -8,6 +8,25 @@ var router = express.Router();
 
 /* GET saved articles */
 
+router.get('/', function(req, res, next ) {
+  Article.find({}, function (error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Or send the doc to the browser as a json object
+    else {
+      console.log("SAVED ARTICLES", doc);
+    }
+  }).populate("note")
+    .exec(function (err, articles) {
+      if (err) {
+        res.status(500)
+      }else {
+        res.render("saved-articles", {articles: articles});
+      }
+    });
+});
 router.get('/articles.json', function (req, res, next) {
   Article.find({}, function (error, doc) {
     // Log any errors
