@@ -86,6 +86,16 @@ router.post('/', function (req, res, next) {
   });
 });
 
+router.post('/:id', function(req, res, next) {
+  var articleId = req.params.id;
+  var method = req.body["_method"];
+
+  if (method === "delete") {
+    res.status(200);
+  }
+});
+
+
 // Create a new note
 router.post("/:id/note", function (req, res) {
 

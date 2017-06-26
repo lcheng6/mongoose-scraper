@@ -22,6 +22,14 @@ var ArticleSchema = new Schema({
   }]
 });
 
+//removing an article should result in removing all its dependent notes. 
+ArticleSchema.pre('remove', function(next) {
+  var noteIdArray = this.note;
+  noteIdArray.map(function(noteId) {
+    this.model('notes').remove({_id:noteId})
+  });
+  next();
+});
 // Create the Article model with the ArticleSchema
 var Article = mongoose.model("Article", ArticleSchema);
 
