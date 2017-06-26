@@ -91,7 +91,10 @@ router.post('/:id', function(req, res, next) {
   var method = req.body["_method"];
 
   if (method === "delete") {
-    res.status(200);
+    Article.find({_id:articleId}).remove()
+      .exec(function() {
+        res.send(200);
+      })
   }
 });
 

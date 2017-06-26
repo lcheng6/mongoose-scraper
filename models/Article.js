@@ -22,7 +22,7 @@ var ArticleSchema = new Schema({
   }]
 });
 
-//removing an article should result in removing all its dependent notes. 
+//removing an article should result in removing all its dependent notes.
 ArticleSchema.pre('remove', function(next) {
   var noteIdArray = this.note;
   noteIdArray.map(function(noteId) {
