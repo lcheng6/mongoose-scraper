@@ -9,6 +9,8 @@ $(".scrape-button").click(function(event) {
         })
 
 });
+
+//Save article, one click to save an article.
 $(".save-article").click(function (event) {
 
     event.stopPropagation();
@@ -31,7 +33,11 @@ $(".save-article").click(function (event) {
             console.log(data);
         });
 });
+//show a modal to display how many articles is scraped.
 $('#scrapeInfoModal').modal({detachable: false, observeChanges: true}).modal('show');
+
+
+
 //
 // $(document).on('click', '.note-modal', function (event) {
 //     event.preventDefault();

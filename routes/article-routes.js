@@ -61,7 +61,14 @@ router.get("/:id", function (req, res) {
     });
 });
 
-/* POST to save article */
+router.delete("/:id", function (req, res)  {
+  Article.findById({
+    "_id": req.params.id
+  });
+  console.log("To delete an article");
+});
+
+/* POST to save or to delete article */
 router.post('/', function (req, res, next) {
   // Using our Article model, create a new entry
   // This effectively passes the result object to the entry (and the title and link)
