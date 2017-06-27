@@ -45,7 +45,7 @@ $('.delete-art').click(function(event) {
   console.log("dataId: " + dataId)
   $.ajax({
     method:"DELETE",
-    url:("/article/" + dataId),
+    url:("/article/" + dataId)
   })
     .done(function(data) {
       // $(event.target).closest('.saved').remove();
@@ -53,6 +53,13 @@ $('.delete-art').click(function(event) {
   $(event.target).closest('.saved').remove();
 });
 
+$('.note-modal').click(function(event) {
+  event.preventDefault();
+  var articleParent = $(event.target).closest(".article");
+  var modalSibling = articleParent.children('.modal.article-notes-modal');
+  modalSibling.modal({detachable: false, observeChanges: true}).modal('show');
+
+});
 
 //
 // $(document).on('click', '.note-modal', function (event) {
