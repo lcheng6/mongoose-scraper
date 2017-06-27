@@ -36,6 +36,22 @@ $(".save-article").click(function (event) {
 //show a modal to display how many articles is scraped.
 $('#scrapeInfoModal').modal({detachable: false, observeChanges: true}).modal('show');
 
+$('.delete-art').click(function(event) {
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+
+  var dataId = $(event.target).attr('data-id');
+
+  console.log("dataId: " + dataId)
+  $.ajax({
+    method:"DELETE",
+    url:("/article/" + dataId),
+  })
+    .done(function(data) {
+      // $(event.target).closest('.saved').remove();
+    });
+  $(event.target).closest('.saved').remove();
+});
 
 
 //

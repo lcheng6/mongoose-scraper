@@ -8,7 +8,7 @@ var router = express.Router();
 
 /* GET saved articles */
 
-router.get('/', function(req, res, next ) {
+router.get('/', function (req, res, next) {
   Article.find({}, function (error, doc) {
     // Log any errors
     if (error) {
@@ -22,7 +22,7 @@ router.get('/', function(req, res, next ) {
     .exec(function (err, articles) {
       if (err) {
         res.status(500)
-      }else {
+      } else {
         res.render("saved-articles", {articles: articles});
       }
     });
@@ -61,11 +61,17 @@ router.get("/:id", function (req, res) {
     });
 });
 
-router.delete("/:id", function (req, res)  {
-  Article.findById({
-    "_id": req.params.id
-  });
-  console.log("To delete an article");
+router.delete("/:id", function (req, res) {
+  var articleId = req.params.id;
+  console.log("To remove article id " + articleId);
+  Article.findByIdAndRemove(articleId, function (err) {
+      if (err) {
+        res.status(500).send("Could not remove: " + articleId);
+      } else {
+        res.status(200);
+      }
+    }
+  );
 });
 
 /* POST to save or to delete article */
@@ -86,13 +92,13 @@ router.post('/', function (req, res, next) {
   });
 });
 
-router.post('/:id', function(req, res, next) {
+router.post('/:id', function (req, res, next) {
   var articleId = req.params.id;
   var method = req.body["_method"];
 
   if (method === "delete") {
-    Article.find({_id:articleId}).remove()
-      .exec(function() {
+    Article.find({_id: articleId}).remove()
+      .exec(function () {
         res.send(200);
       })
   }

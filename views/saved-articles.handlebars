@@ -9,13 +9,7 @@
               <button class="btn btn-success create-none float-right note-modal" data-id="{{this._id}}"
                       data-toggle="modal" data-target="#myModal">ARTICLE NOTES
               </button>
-              <!--<form action="/article/{{this._id}}?_method=DELETE" method="post">-->
-              <!--<button type="submit" class="btn btn-danger delete-art float-right">DELETE FROM SAVED</button>-->
-              <!--</form>-->
-              <form method="POST" action="/article/{{this._id}}" enctype="application/x-www-form-urlencoded">
-                <input type="hidden" name="_method" value="delete">
-                <button type="submit" class="btn btn-danger delete-art float-right">Delete resource</button>
-              </form>
+              <button type="submit" class="btn btn-danger delete-art float-right" data-id="{{this._id}}">Delete resource</button>
             </div>
             <div id='artPost' class="panel-body"> {{this.post}} </div>
           </div>
