@@ -144,10 +144,22 @@ router.delete("/:id/note/:nid", function (req, res) {
   console.log("note Id: " + noteId);
 
 
-  Article.update({_id: articleId}, {$pullAll: {note: [nid]}});
-  Note.findByIdAndRemove(noteId);
+  Article.findOneAndUpdate({
+      _id: articleId
+    }, {
+      $pullAll: {
+        note: [noteId]
+      }
+    }, function(err, newdoc) {
+      if (err) {
+        res.status(500).send(err);
+      }
+      else {
+        Note.findByIdAndRemove(noteId);
+        res.status(200);
+      }
+  });
 
-  res.status(200);
 });
 
 router.delete("/:id/note", function (req, res) {
