@@ -92,9 +92,14 @@ $('.note-modal').click(function(event) {
         // clear the effected note from UI
         var noteId = $(event.target).closest('div.note').attr('data-id');
         var articleId = $(event.target).closest('div.article').attr('data-id');
+        var deleteUrl = "/article/" + articleId + "/note/" + noteId;
+        $.ajax({
+          method:"DELETE",
+          url:deleteUrl
+        });
         $(event.target).closest('.note').remove();
 
-        console.log("to remove note id: " + noteId + "article id: " + articleId)
+        console.log("to remove note id: " + noteId + ", article id: " + articleId)
       })
     });
   modalSibling.modal({detachable: false, observeChanges: true}).modal('show');

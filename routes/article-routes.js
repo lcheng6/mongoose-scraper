@@ -138,9 +138,16 @@ router.post("/:id/note", function (req, res) {
 });
 
 router.delete("/:id/note/:nid", function (req, res) {
-  console.log("id: " + req.params.id);
-  console.log("nid: " + req.params.nid);
-  res.status(202);
+  var articleId = req.params.id;
+  var noteId = req.params.nid;
+  console.log("article ID: " + articleId);
+  console.log("note Id: " + noteId);
+
+
+  Article.update({_id: articleId}, {$pullAll: {note: [nid]}});
+  Note.findByIdAndRemove(noteId);
+
+  res.status(200);
 });
 
 router.delete("/:id/note", function (req, res) {
