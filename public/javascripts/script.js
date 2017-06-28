@@ -42,7 +42,7 @@ $('.delete-art').click(function(event) {
 
   var dataId = $(event.target).attr('data-id');
 
-  console.log("dataId: " + dataId)
+  console.log("dataId: " + dataId);
   $.ajax({
     method:"DELETE",
     url:("/article/" + dataId)
@@ -57,10 +57,37 @@ $('.note-modal').click(function(event) {
   event.preventDefault();
   var articleParent = $(event.target).closest(".article");
   var modalSibling = articleParent.children('.modal.article-notes-modal');
+
   modalSibling.modal({detachable: false, observeChanges: true}).modal('show');
 
 });
 
+$('.save-note').click(function(event) {
+
+  var noteContent = $(event.target).closest('.modal-content').children('textarea')[0];
+  noteContent = "Example Note";
+  var articleId = $(event.target).closest('.article').attr('data-id');
+
+  console.log("To save note: "+ noteContent + " at article ID: " + articleId);
+  var postUrl = "/article/" + articleId+ "/note";
+
+  $.ajax({
+    method:"POST",
+    url:postUrl,
+    data: {
+      "Text": noteContent
+    }
+  })
+    .done(function(data) {
+      console.log(data);
+    })
+
+});
+
+$('.delete-note').click(function(event) {
+  var noteId = $(event.target).attr('data-id');
+  console.log("to remove note id: " + noteId);
+});
 //
 // $(document).on('click', '.note-modal', function (event) {
 //     event.preventDefault();

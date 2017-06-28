@@ -55,6 +55,7 @@ body {
 .note {
   margin-top: 20px;
   border: 1px solid #d4d8dd;
+  padding: 3px;
   overflow: hidden;
 }
 

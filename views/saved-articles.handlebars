@@ -3,7 +3,7 @@
     <div class="col-sm-12">
 
       {{#each articles}}
-        <div class="article">
+        <div class="article" data-id="{{this.id}}">
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 id='artTitle' class="panel-title">{{this.title}}</h3>
@@ -26,14 +26,18 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">Notes for Article: blah blah</h4>
                 </div>
-                <div class="modal-body">
-                  <p>Notes Notes Baby!</p>
-                  <p>Notes Notes Baby!</p>
-                  <p>Notes Notes Baby!</p>
-                  <textarea class="form-control" rows="5" id="comment" name="body"></textarea>
+                <div class="modal-body notes-container">
+                  <div class="note">
+                    <p>Notes Notes Baby!
+                      <button type="button" class="btn btn-danger btn-sm float-right delete-note" data-id="NotValidId">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </button>
+                    </p>
+                  </div>
+                  <textarea class="form-control" rows="5" name="body"></textarea>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success save-note" data-dismiss="modal">Save Note</button>
                 </div>
               </div>
 
@@ -44,4 +48,14 @@
     </div>
   </div>
 </div>
+
+<script id="single-note-tempate" type="text/x-handlebars-template">
+  <div class="note">
+    <p>\{{body}} Text Holder
+      <button type="button" class="btn btn-danger btn-sm float-right delete-note" data-id="NotValidId">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+    </p>
+  </div>
+</script>
 
