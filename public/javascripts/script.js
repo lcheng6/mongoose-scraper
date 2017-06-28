@@ -5,7 +5,7 @@ $(".scrape-button").click(function(event) {
     })
         .done(function(data) {
             //log the response
-            consoe.log(data);
+            console.log(data);
         })
 
 });
@@ -56,10 +56,36 @@ $('.delete-art').click(function(event) {
 $('.note-modal').click(function(event) {
   event.preventDefault();
   var articleParent = $(event.target).closest(".article");
+
+  var articleId = $(event.target).closest(".article").attr("data-id");
+
   var modalSibling = articleParent.children('.modal.article-notes-modal');
 
-  modalSibling.modal({detachable: false, observeChanges: true}).modal('show');
+  //Get the note context of the article.
+  //clear any existing notes in the article note modal
+  //TODO: put in new notes in the note modal.
+  //pop up the new modal.
 
+  var articleUrl = "/article/" + articleId;
+
+  var single_note_source = $('#single-note-template').html();
+  var single_note_template =  Handlebars.compile(single_note_source);
+
+  $.ajax({
+    method:"GET",
+    url:articleUrl
+  })
+    .done(function(data) {
+      var notes_container = $(event.target).closest('.article').find('.notes-container');
+      notes_container.empty();
+      _.each(data.note, function(single_note) {
+        console.log(single_note.body);
+        var note_html = single_note_template(single_note);
+        notes_container.append(note_html);
+      })
+
+    });
+  modalSibling.modal({detachable: false, observeChanges: true}).modal('show');
 });
 
 $('.save-note').click(function(event) {

@@ -26,13 +26,15 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title">Notes for Article: blah blah</h4>
                 </div>
-                <div class="modal-body notes-container">
-                  <div class="note">
-                    <p>Notes Notes Baby!
-                      <button type="button" class="btn btn-danger btn-sm float-right delete-note" data-id="NotValidId">
-                        <span class="glyphicon glyphicon-remove"></span>
-                      </button>
-                    </p>
+                <div class="modal-body">
+                  <div class="notes-container">
+                    <div class="note">
+                      <p>Notes Notes Baby!
+                        <button type="button" class="btn btn-danger btn-sm float-right delete-note" data-id="NotValidId">
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                      </p>
+                    </div>
                   </div>
                   <textarea class="form-control" rows="5" name="body"></textarea>
                 </div>
@@ -49,9 +51,9 @@
   </div>
 </div>
 
-<script id="single-note-tempate" type="text/x-handlebars-template">
+<script id="single-note-template" type="text/x-handlebars-template">
   <div class="note">
-    <p>\{{body}} Text Holder
+    <p>\{{body}}
       <button type="button" class="btn btn-danger btn-sm float-right delete-note" data-id="NotValidId">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
