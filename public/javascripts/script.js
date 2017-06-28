@@ -63,7 +63,7 @@ $('.note-modal').click(function(event) {
 
   //Get the note context of the article.
   //clear any existing notes in the article note modal
-  //TODO: put in new notes in the note modal.
+  //put in new notes in the note modal.
   //pop up the new modal.
 
   var articleUrl = "/article/" + articleId;
@@ -90,8 +90,13 @@ $('.note-modal').click(function(event) {
 
 $('.save-note').click(function(event) {
 
-  var noteContent = $(event.target).closest('.modal-content').children('textarea')[0];
-  noteContent = "Example Note";
+  //Pull the content from the textarea
+  //make an ajax query to save the note to the article context
+
+  var noteTextArea = $(event.target).closest('.article').find('textarea.note-entry');
+  var noteContent = noteTextArea.val();
+  noteTextArea.val('');
+  console.log(noteContent);
   var articleId = $(event.target).closest('.article').attr('data-id');
 
   console.log("To save note: "+ noteContent + " at article ID: " + articleId);
