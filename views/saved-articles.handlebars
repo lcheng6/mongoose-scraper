@@ -45,9 +45,9 @@
 </div>
 
 <script id="single-note-template" type="text/x-handlebars-template">
-  <div class="note">
+  <div class="note" data-id="\{{_id}}">
     <p>\{{body}}
-      <button type="button" class="btn btn-danger btn-sm float-right delete-note" data-id="NotValidId">
+      <button type="button" class="btn btn-danger btn-sm float-right delete-note">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
     </p>

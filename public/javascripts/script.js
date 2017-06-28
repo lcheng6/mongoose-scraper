@@ -64,6 +64,7 @@ $('.note-modal').click(function(event) {
   //Get the note context of the article.
   //clear any existing notes in the article note modal
   //put in new notes in the note modal.
+  //put in a delete-note click handler at each new note.
   //pop up the new modal.
 
   var articleUrl = "/article/" + articleId;
@@ -82,8 +83,19 @@ $('.note-modal').click(function(event) {
         console.log(single_note.body);
         var note_html = single_note_template(single_note);
         notes_container.append(note_html);
-      })
 
+        });
+
+      notes_container.find('.delete-note').click(function(event) {
+
+        // TODO: remove the effect note from Mongo.
+        // clear the effected note from UI
+        var noteId = $(event.target).closest('div.note').attr('data-id');
+        var articleId = $(event.target).closest('div.article').attr('data-id');
+        $(event.target).closest('.note').remove();
+
+        console.log("to remove note id: " + noteId + "article id: " + articleId)
+      })
     });
   modalSibling.modal({detachable: false, observeChanges: true}).modal('show');
 });
@@ -115,10 +127,13 @@ $('.save-note').click(function(event) {
 
 });
 
-$('.delete-note').click(function(event) {
-  var noteId = $(event.target).attr('data-id');
-  console.log("to remove note id: " + noteId);
-});
+// $('.delete-note').click(function(event) {
+//   var noteId = $(event.target).closest('div.note').attr('data-id');
+//   var articleId = $(event.target).closest('div.article').attr('data-id');
+//
+//
+//   console.log("to remove note id: " + noteId + "article id: " + articleId)
+// });
 //
 // $(document).on('click', '.note-modal', function (event) {
 //     event.preventDefault();
